@@ -3,9 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 import os
 
-os.chdir("E:\\Documents\\College Work\\7th Semester\\Final Year Project")
-
-img = cv2.imread('original.jpeg',0)
+img = cv2.imread('Images\\original.jpeg',0)
 
 f = np.fft.fft2(img) # fft to convert the image to freq domain
 fshift = np.fft.fftshift(f) # shift the center
