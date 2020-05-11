@@ -64,11 +64,8 @@ def processmask(original):
   plt.imsave('basic mask.jpg',zf)
 
   origimg = np.asarray(Image.open(original))
-  #res = cv2.resize (origimg, dsize= (zf.shape[1], zf.shape[0]) , interpolation=cv2.INTER_AREA)
-  #plt.imsave('applyon.jpg',res)
-
-  mask = cv2.resize (zf, dsize= (origimg.shape[1], origimg.shape[0]) , interpolation=cv2.INTER_CUBIC)
-  #plt.imsave('applyon.jpg',res)
+  res = cv2.resize (origimg, dsize= (zf.shape[1], zf.shape[0]) , interpolation=cv2.INTER_AREA)
+  plt.imsave('applyon.jpg',res)
 
   thickness = 2
   res = np.array(cv2.morphologyEx(zf, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_RECT, (thickness, thickness))))
