@@ -35,7 +35,7 @@ class Tapp(Frame):
     self.id=StringVar()
     self.id.set(None)
 
-    Button(self,text="Upload picture", command= self.add_data).pack(padx=30,pady=30,side=TOP)
+    Button(self,text="Upload image", command= self.add_data).pack(padx=30,pady=30,side=TOP)
 
   def add_data(self):
     picture=easygui.fileopenbox(msg="Select picture")

@@ -94,6 +94,27 @@ class Inpainter():
         self.working_image = np.copy(self.image)
         self.working_mask = np.copy(self.mask)
 
+        self._find_front()
+        height, width = self.working_mask.shape
+
+        # Remove the target region from the image
+        inverse_mask = 1 - self.working_mask
+        rgb_inverse_mask = self._to_rgb(inverse_mask)
+        image = self.working_image * rgb_inverse_mask
+
+        # Fill the target borders with red
+        image[:, :, 0] += self.front * 255
+
+        # Fill the inside of the target region with white
+        white_region = (self.working_mask - self.front) * 255
+        rgb_white_region = self._to_rgb(white_region)
+        image += rgb_white_region
+
+        plt.title("Final mask")
+        plt.imshow(rgb_white_region)
+        plt.show()
+        plt.imsave("finalMask.jpg", rgb_white_region)
+
     def _find_front(self):
         # Find the front using laplacian on the mask
 

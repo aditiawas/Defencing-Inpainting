@@ -22,7 +22,7 @@ def processbpf(img):
   rows, cols = img.shape
   crow,ccol = int(rows/2) , int(cols/2)
 
-  x = 30
+  x = 40
   # High Pass Filter (HPF)
   fshift[crow-x:crow+x, ccol-x:ccol+x] = 0
   f_ishift = np.fft.ifftshift(fshift)

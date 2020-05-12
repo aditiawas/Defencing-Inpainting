@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from skimage.transform import resize
 import os
+from skimage.filters import laplace
 
 def processmask(original):
 
@@ -31,9 +32,9 @@ def processmask(original):
   # plt.imshow(wp.data,plt.cm.gray) # plot original image
   # plt.show()
 
-  limith = -10
-  limitv = -10
-  limitd = -10
+  limith = 10
+  limitv = 10
+  limitd = -20
   limitf = 15
 
   zh=wp['h'].data
@@ -70,7 +71,7 @@ def processmask(original):
   thickness = 2
   res = np.array(cv2.morphologyEx(zf, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_RECT, (thickness, thickness))))
   # print(res.size)
-  plt.title("Final fence mask")
+  plt.title("Closed fence mask")
   plt.imshow(res)
   plt.show()
 
